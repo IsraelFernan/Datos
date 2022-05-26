@@ -1,0 +1,50 @@
+package fisei.uta.basedatos001;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    Metodos m = new Metodos();
+    TextView nombre1,apellido1,potencia1,factorial1;
+    Button cerrar1,siguiente1;
+    private int codigoRequerido=1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        cerrar1 = findViewById(R.id.btn_mostrar1);
+        siguiente1 = findViewById(R.id.btn_siguiente1);
+        nombre1=findViewById(R.id.txtNombre1);
+        apellido1=findViewById(R.id.txtApellido1);
+        potencia1=findViewById(R.id.txtPotencia1);
+        factorial1 = findViewById(R.id.txtFactorial1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == codigoRequerido) && (resultCode == RESULT_OK)) {
+            int base = Integer.valueOf(data.getStringExtra("base"));
+            int potencia = Integer.valueOf(data.getStringExtra("potencia"));
+            int exp = m.potencia(base,potencia);
+            int f = m.factorial(base);
+            nombre1.setText(data.getStringExtra("nombre"));
+            apellido1.setText(data.getStringExtra("apellido"));
+            potencia1.setText(exp);
+            factorial1.setText(f);
+        }
+    }
+
+    public void siguiente1(View view){
+        Intent i = new Intent(this,SegundoActivity.class);
+        cerrar1.setEnabled(true);
+        startActivity(i);
+        siguiente1.setEnabled(false);
+    }
+}

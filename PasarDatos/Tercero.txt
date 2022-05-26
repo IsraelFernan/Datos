@@ -1,0 +1,39 @@
+package fisei.uta.basedatos001;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class TercerActivity extends AppCompatActivity {
+    EditText Nombre3;
+    EditText Apellido3;
+    EditText Base3;
+    EditText Potencia3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tercer);
+        Nombre3 = findViewById(R.id.txtNombre3);
+        Apellido3 = findViewById(R.id.txtApellido3);
+        Base3 = findViewById(R.id.txtBase3);
+        Potencia3 = findViewById(R.id.txtPotencia3);
+    }
+    public void cerrar3(View view){
+        String nombre = Nombre3.getText().toString();
+        String apellido = Apellido3.getText().toString();
+        String base = Base3.getText().toString();
+        String potencia = Potencia3.getText().toString();
+        Intent i = new Intent();
+        i.putExtra("nombre",nombre);
+        i.putExtra("apellido",apellido);
+        i.putExtra("base",base);
+        i.putExtra("potencia",potencia);
+        setResult(Activity.RESULT_OK, i);
+        this.finish();
+    }
+}
