@@ -1,0 +1,15 @@
+Eliminar la configuración de usuario:
+
+git config --global --unset user.name
+git config --global --unset user.email
+
+Eliminar todas sus configuraciones globales:
+
+git config --global --unset-all
+
+Después del primer commit
+
+gti config --global user.email fernanmor6@gmail.com
+gti config --global user.name FernanMor
+
+Repetir git commit
